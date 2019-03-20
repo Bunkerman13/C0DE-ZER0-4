@@ -31,7 +31,7 @@ public class SpawnStars : MonoBehaviour
         // **in the future, stars will spawn outside of camera/canvas bounds
         for(int x = 0; x < Random.Range(0,4); x++)
             // stops at 50 stars
-            if(maxStars.Count < 51)
+            if(maxStars.Count < MySceneManager.Instance.MaxStars)
                 // instantiates stars and adds them to a list
                 if(Random.Range(0,2) == 0)
                     maxStars.Add(Instantiate(MySceneManager.Instance.starNormalPrefab, new Vector2(Random.Range(-halfWidth, halfWidth), Random.Range(-halfHeight, halfHeight)), Quaternion.identity));
