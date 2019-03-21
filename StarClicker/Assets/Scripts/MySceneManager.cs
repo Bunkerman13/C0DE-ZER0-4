@@ -16,9 +16,12 @@ public class MySceneManager : Singleton<MySceneManager>
     public GameObject screenCanvas;
     public GameObject storeCanvas;
 
+    // list that holds stars
+    public List<GameObject> maxStars;
+
     // constant values
     const float SPEED = 10;
-    const int MAX_STARS = 50;
+    const int MAX_STARS = 15;
     // constant accessors
     public float Speed { get { return SPEED; } }
     public float MaxStars { get { return MAX_STARS; } }

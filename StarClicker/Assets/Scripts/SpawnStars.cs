@@ -8,9 +8,6 @@ public class SpawnStars : MonoBehaviour
     float halfHeight;
     float halfWidth;
 
-    // list that holds stars
-    List<GameObject> maxStars;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,23 +16,38 @@ public class SpawnStars : MonoBehaviour
         halfWidth = halfHeight * Camera.main.aspect;
 
         // instantiates list for use
-        maxStars = new List<GameObject>();
+        MySceneManager.Instance.maxStars = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // for loop that picks a random number of stars to spawn at once
-        // spawns them within the bounds of the camera/canvas
-        // **in the future, multiple stars will cross the screen at once
-        // **in the future, stars will spawn outside of camera/canvas bounds
+        // spawns them outside the bounds of the camera/canvas
         for(int x = 0; x < Random.Range(0,4); x++)
-            // stops at 50 stars
-            if(maxStars.Count < MySceneManager.Instance.MaxStars)
+            // stops at MaxStars
+            if(MySceneManager.Instance.maxStars.Count < MySceneManager.Instance.MaxStars)
                 // instantiates stars and adds them to a list
                 if(Random.Range(0,2) == 0)
-                    maxStars.Add(Instantiate(MySceneManager.Instance.starNormalPrefab, new Vector2(Random.Range(-halfWidth, halfWidth), Random.Range(-halfHeight, halfHeight)), Quaternion.identity));
+                    MySceneManager.Instance.maxStars.Add(Instantiate(MySceneManager.Instance.starNormalPrefab, new Vector2(halfWidth + Random.Range(4f, halfWidth*2.5f), Random.Range(-halfHeight + 2f, halfHeight - 2f)), Quaternion.identity));
                 else
-                    maxStars.Add(Instantiate(MySceneManager.Instance.starBadPrefab, new Vector2(Random.Range(-halfWidth, halfWidth), Random.Range(-halfHeight, halfHeight)), Quaternion.identity));
+                    MySceneManager.Instance.maxStars.Add(Instantiate(MySceneManager.Instance.starBadPrefab, new Vector2(halfWidth + Random.Range(4f, halfWidth*2.5f), Random.Range(-halfHeight + 2f, halfHeight - 2f)), Quaternion.identity));
+
+        ReplaceStar();
+    }
+
+    void ReplaceStar()
+    {
+        for(int x = 0; x < MySceneManager.Instance.maxStars.Count; x++)
+        {
+            if(MySceneManager.Instance.maxStars[x] == null)
+            {
+                if (Random.Range(0, 2) == 0)
+                    MySceneManager.Instance.maxStars[x] = (Instantiate(MySceneManager.Instance.starNormalPrefab, new Vector2(halfWidth + Random.Range(5f, halfWidth * 2f), Random.Range(-halfHeight + 2f, halfHeight - 2f)), Quaternion.identity));
+                else
+                    MySceneManager.Instance.maxStars[x] = (Instantiate(MySceneManager.Instance.starBadPrefab, new Vector2(halfWidth + Random.Range(5f, halfWidth * 2f), Random.Range(-halfHeight + 2f, halfHeight - 2f)), Quaternion.identity));
+
+            }
+        }
     }
 }
