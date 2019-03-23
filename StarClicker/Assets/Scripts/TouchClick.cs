@@ -9,10 +9,20 @@ public class TouchClick : MonoBehaviour
     // used to identify which star is which
     public int starIdentifier;
 
+    public float timer = 1.0f;
+
     // Update is called once per frame
     void Update()
     {
         TouchInput();
+
+        timer -= 0.1f;
+        if(timer<=0)
+        {
+            MySceneManager.Instance.score += (MySceneManager.Instance.timePlus * MySceneManager.Instance.timePlusLevel);
+            timer = 1.0f;
+        }
+
     }
 
     /*
@@ -68,8 +78,9 @@ public class TouchClick : MonoBehaviour
         switch (identifier)
         {
             case 1: // normal star
-                MySceneManager.Instance.score+=1f * MySceneManager.Instance.multiplier;
-                MySceneManager.Instance.multiplier += .05f;
+                //Adds on any additional values
+                MySceneManager.Instance.score+= (1f+ (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel))* MySceneManager.Instance.multiplier;
+                MySceneManager.Instance.multiplier += .05f+ (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
                 MySceneManager.Instance.stars++;
                 break;
             case 2: // bad star

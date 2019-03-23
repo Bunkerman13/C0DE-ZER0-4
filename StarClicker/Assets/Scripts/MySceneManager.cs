@@ -9,6 +9,19 @@ public class MySceneManager : Singleton<MySceneManager>
     public float multiplier;
     public int stars;
 
+    public float scorePlus;
+    public float multiPlus;
+    public int timePlus;
+
+    public int scorePlusLevel;
+    public int multiPlusLevel;
+    public int timePlusLevel;
+
+    public int scorePlusCost;
+    public int multiPlusCost;
+    public int timePlusCost;
+
+
     // pause
     public bool paused = false;
 
