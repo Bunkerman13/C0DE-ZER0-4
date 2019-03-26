@@ -42,4 +42,8 @@ public class MySceneManager : Singleton<MySceneManager>
     // prefabs for use during game
     public GameObject starNormalPrefab;
     public GameObject starBadPrefab;
+
+    public GameObject scoreUpButton;
+    public GameObject multiUpButton;
+    public GameObject bonusUpButton;
 }
