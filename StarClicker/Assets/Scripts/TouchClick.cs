@@ -9,7 +9,7 @@ public class TouchClick : MonoBehaviour
     // used to identify which star is which
     public int starIdentifier;
 
-    public float timer = 1.0f;
+    public float timer = 100.0f;
 
     // Update is called once per frame
     void Update()
@@ -17,10 +17,10 @@ public class TouchClick : MonoBehaviour
         TouchInput();
 
         timer -= 0.1f;
-        if(timer<=0)
+        if (timer <= 0)
         {
             MySceneManager.Instance.score += (MySceneManager.Instance.timePlus * MySceneManager.Instance.timePlusLevel);
-            timer = 1.0f;
+            timer = 100.0f;
         }
 
     }
@@ -34,10 +34,10 @@ public class TouchClick : MonoBehaviour
     void TouchInput()
     {
         // checks if there is at least 1 touch occuring
-        if(Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             // checks if the first touch phase is the "Began" phase (touch is first detected)
-            if(Input.touches[0].phase == TouchPhase.Began)
+            if (Input.touches[0].phase == TouchPhase.Began)
             {
                 // gets position of touch on screen and translates it to world position
                 var worldPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
@@ -54,7 +54,7 @@ public class TouchClick : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     // When object is clicked on, check which star,
@@ -79,12 +79,12 @@ public class TouchClick : MonoBehaviour
         {
             case 1: // normal star
                 //Adds on any additional values
-                MySceneManager.Instance.score+= (1f+ (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel))* MySceneManager.Instance.multiplier;
-                MySceneManager.Instance.multiplier += .05f+ (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
+                MySceneManager.Instance.score += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel)) * MySceneManager.Instance.multiplier;
+                MySceneManager.Instance.multiplier += .05f + (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
                 MySceneManager.Instance.stars++;
                 break;
             case 2: // bad star
-                MySceneManager.Instance.score-=1f;
+                MySceneManager.Instance.score -= 1f;
                 MySceneManager.Instance.multiplier -= .1f;
                 break;
         }

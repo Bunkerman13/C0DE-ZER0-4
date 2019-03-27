@@ -9,7 +9,7 @@ public class HandleStore : MonoBehaviour
     void Start()
     {
         MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
-        MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString(); 
+        MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
         MySceneManager.Instance.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + MySceneManager.Instance.multiPlusLevel.ToString() + " Cost: " + MySceneManager.Instance.multiPlusCost.ToString();
 
         MySceneManager.Instance.scoreUpButton.SetActive(false);
@@ -18,11 +18,12 @@ public class HandleStore : MonoBehaviour
     }
 
     //// Update is called once per frame
-    //void Update()
-    //{
+    void Update()
+    {
 
 
-    //}
+
+    }
 
     public void ClickEnter()
     {
@@ -77,9 +78,9 @@ public class HandleStore : MonoBehaviour
         {
             MySceneManager.Instance.score = MySceneManager.Instance.score - MySceneManager.Instance.scorePlusCost;
             MySceneManager.Instance.scorePlusLevel += 1;
-            MySceneManager.Instance.scorePlusCost *= MySceneManager.Instance.scorePlusCost;
+            MySceneManager.Instance.scorePlusCost = (MySceneManager.Instance.scorePlusCost * 2);
 
-            
+
             MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
             MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
             MySceneManager.Instance.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + MySceneManager.Instance.multiPlusLevel.ToString() + " Cost: " + MySceneManager.Instance.multiPlusCost.ToString();
@@ -96,7 +97,7 @@ public class HandleStore : MonoBehaviour
         {
             MySceneManager.Instance.score = MySceneManager.Instance.score - MySceneManager.Instance.multiPlusCost;
             MySceneManager.Instance.multiPlusLevel += 1;
-            MySceneManager.Instance.multiPlusCost *= MySceneManager.Instance.multiPlusCost;
+            MySceneManager.Instance.multiPlusCost = (MySceneManager.Instance.multiPlusCost * 2);
 
             MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
             MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
@@ -117,7 +118,7 @@ public class HandleStore : MonoBehaviour
 
             MySceneManager.Instance.score = MySceneManager.Instance.score - MySceneManager.Instance.timePlusCost;
             MySceneManager.Instance.timePlusLevel += 1;
-            MySceneManager.Instance.timePlusCost *= MySceneManager.Instance.timePlusCost;
+            MySceneManager.Instance.timePlusCost = (MySceneManager.Instance.timePlusCost * 2);
 
             Debug.Log(MySceneManager.Instance.timePlusCost);
             Debug.Log(MySceneManager.Instance.timePlusLevel);
