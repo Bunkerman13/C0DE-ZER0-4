@@ -22,6 +22,10 @@ public class MySceneManager : Singleton<MySceneManager>
     public int timePlusCost;
 
 
+    //Specifically used to draw the gauge
+    public float fuel = 1000.0f;
+    public FuelGauge fuelGauge;
+
     // pause
     public bool paused = false;
 
@@ -46,4 +50,9 @@ public class MySceneManager : Singleton<MySceneManager>
     public GameObject scoreUpButton;
     public GameObject multiUpButton;
     public GameObject bonusUpButton;
+
+    private void Update()
+    {
+        fuelGauge.SetSize(fuel/100);
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TouchClick : MonoBehaviour
 {
@@ -11,16 +12,25 @@ public class TouchClick : MonoBehaviour
 
     public float timer = 100.0f;
 
+  
+
     // Update is called once per frame
     void Update()
     {
         TouchInput();
 
-        timer -= 0.1f;
+        timer -= 1.0f;
         if (timer <= 0)
         {
             MySceneManager.Instance.score += (MySceneManager.Instance.timePlus * MySceneManager.Instance.timePlusLevel);
             timer = 100.0f;
+        }
+
+        MySceneManager.Instance.fuel -= 0.01f;
+
+        if (MySceneManager.Instance.fuel <= 0.0f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         }
 
     }
@@ -80,12 +90,20 @@ public class TouchClick : MonoBehaviour
             case 1: // normal star
                 //Adds on any additional values
                 MySceneManager.Instance.score += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel)) * MySceneManager.Instance.multiplier;
+                MySceneManager.Instance.fuel += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
+                if (MySceneManager.Instance.fuel >= 1000.0f)
+                {
+                    MySceneManager.Instance.fuel = 1000.0f;
+                }
+
                 MySceneManager.Instance.multiplier += .05f + (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
                 MySceneManager.Instance.stars++;
                 break;
             case 2: // bad star
-                MySceneManager.Instance.score -= 1f;
+                MySceneManager.Instance.score -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
                 MySceneManager.Instance.multiplier -= .1f;
+                MySceneManager.Instance.fuel -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
+
                 break;
         }
 
