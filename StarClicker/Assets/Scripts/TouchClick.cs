@@ -8,12 +8,18 @@ public class TouchClick : MonoBehaviour
     // in the pregabs folder
     // used to identify which star is which
     public int starIdentifier;
-
+    private bool disappearing;
     public float timer = 100.0f;
+
+    void Start()
+    {
+        disappearing = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        StarDisappear();
         TouchInput();
 
         timer -= 0.1f;
@@ -50,11 +56,27 @@ public class TouchClick : MonoBehaviour
                     // calls IdentifyStar function to effect the game
                     // based on whichever star is chosen
                     IdentifyStar(starIdentifier);
-                    Destroy(gameObject);
+
+                    Destroy(gameObject, .3f);
+                    disappearing = true;
                 }
             }
         }
 
+    }
+
+    //Method that aesthetically handles the star sprite dissappearance action
+    void StarDisappear()
+    {
+        //if the star has been touched, rotate, change opacity, and enlarge size to appear like disappeaing
+        if (disappearing)
+        {
+            transform.Rotate(Vector3.forward * 10);
+            transform.localScale += new Vector3(.5f,.5f,0);
+            Color tempColor = gameObject.GetComponent<SpriteRenderer>().color;
+            tempColor.a -= .1f;
+            gameObject.GetComponent<SpriteRenderer>().color = tempColor;
+        }
     }
 
     // When object is clicked on, check which star,
@@ -62,7 +84,7 @@ public class TouchClick : MonoBehaviour
     private void OnMouseDown()
     {
         IdentifyStar(starIdentifier);
-        Destroy(gameObject);
+        Destroy(gameObject, .3f);
     }
 
     /*
