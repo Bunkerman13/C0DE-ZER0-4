@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MySceneManager : Singleton<MySceneManager>
 {
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // values for determining score
     public float score;
     public float multiplier;
