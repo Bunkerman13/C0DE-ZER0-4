@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class HandleStore : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,18 +15,26 @@ public class HandleStore : MonoBehaviour
         MySceneManager.Instance.scoreUpButton.SetActive(false);
         MySceneManager.Instance.bonusUpButton.SetActive(false);
         MySceneManager.Instance.multiUpButton.SetActive(false);
+        MySceneManager.Instance.settingButton.SetActive(false);
+        //MySceneManager.Instance.backscorebutton.SetActive(false);
+        //MySceneManager.Instance.MainMenubutton.SetActive(false);
     }
 
-    //// Update is called once per frame
-    void Update()
-    {
+    ////// Update is called once per frame
+    //void Update()
+    //{
 
 
 
-    }
-
+    //}
     public void ClickEnter()
     {
+        MySceneManager.Instance.scoreUpButton.SetActive(true);
+        MySceneManager.Instance.bonusUpButton.SetActive(true);
+        MySceneManager.Instance.multiUpButton.SetActive(true);
+
+        MySceneManager.Instance.settingButton.SetActive(true);
+
         MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
         MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
 
@@ -41,9 +49,7 @@ public class HandleStore : MonoBehaviour
         tempColor.a = 1f;
         storeBackground.color = tempColor;
 
-        MySceneManager.Instance.scoreUpButton.SetActive(true);
-        MySceneManager.Instance.bonusUpButton.SetActive(true);
-        MySceneManager.Instance.multiUpButton.SetActive(true);
+      
 
         // toggles raycast target (allow it to be clicked or not)
         storeBackground.raycastTarget = !storeBackground.raycastTarget;
@@ -64,6 +70,7 @@ public class HandleStore : MonoBehaviour
         MySceneManager.Instance.scoreUpButton.SetActive(false);
         MySceneManager.Instance.bonusUpButton.SetActive(false);
         MySceneManager.Instance.multiUpButton.SetActive(false);
+        MySceneManager.Instance.settingButton.SetActive(false);
 
         // toggles raycast target (allow it to be clicked or not)
         storeBackground.raycastTarget = !storeBackground.raycastTarget;
@@ -129,5 +136,29 @@ public class HandleStore : MonoBehaviour
 
         }
     }
-
+    public void Setting()
+    {
+        MySceneManager.Instance.settingCanvas.GetComponent<Canvas>().sortingOrder = 3;
+        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
+        
+        MySceneManager.Instance.settingCanvas.SetActive(true);
+        //MySceneManager.Instance.backscorebutton.SetActive(true);
+        //MySceneManager.Instance.MainMenubutton.SetActive(true);
+    }
+    public void falseSetting()
+    {
+        MySceneManager.Instance.settingCanvas.GetComponent<Canvas>().sortingOrder = -3;
+        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
+        MySceneManager.Instance.settingCanvas.SetActive(false);
+        MySceneManager.Instance.scoreUpButton.SetActive(true);
+        MySceneManager.Instance.multiUpButton.SetActive(true);
+        MySceneManager.Instance.bonusUpButton.SetActive(true);
+        MySceneManager.Instance.settingButton.SetActive(true);
+        //MySceneManager.Instance.backscorebutton.SetActive(false);
+        //MySceneManager.Instance.MainMenubutton.SetActive(false);
+    }
+    public void Menue()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
 }
