@@ -50,9 +50,11 @@ public class MySceneManager : Singleton<MySceneManager>
     public GameObject scoreUpButton;
     public GameObject multiUpButton;
     public GameObject bonusUpButton;
+    public GameObject settingButton;
+    public GameObject settingCanvas;
 
-    private void Update()
-    {
-        fuelGauge.SetSize(fuel/100);
-    }
+    //private void Update()
+    //{
+    //    fuelGauge.SetSize(fuel/100);
+    //}
 }
