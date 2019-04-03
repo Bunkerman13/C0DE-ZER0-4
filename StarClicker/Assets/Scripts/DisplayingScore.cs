@@ -39,6 +39,12 @@ public class DisplayingScore : MonoBehaviour
         {
             textComponent.text = "Stars: " + MySceneManager.Instance.stars;
         }
+
+        else if (displayValue == 4)
+        {
+            textComponent.text = "Fuel: " + MySceneManager.Instance.fuel;
+        }
+
         // displays the current state of score, multiplier, and amount of stars
         // + "\n" +
             // + "\n" +

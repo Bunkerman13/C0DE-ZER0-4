@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class MySceneManager : Singleton<MySceneManager>
 {
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     // values for determining score
     public float score;
     public float multiplier;
@@ -27,13 +22,17 @@ public class MySceneManager : Singleton<MySceneManager>
     public int timePlusCost;
 
 
+    //Specifically used to draw the gauge
+    public float fuel = 1000.0f;
+    public FuelGauge fuelGauge;
+
     // pause
     public bool paused = false;
 
     // canvas objects
     public GameObject screenCanvas;
     public GameObject storeCanvas;
-    public GameObject settingCanvas;
+
     // list that holds stars
     public List<GameObject> maxStars;
 
@@ -51,7 +50,9 @@ public class MySceneManager : Singleton<MySceneManager>
     public GameObject scoreUpButton;
     public GameObject multiUpButton;
     public GameObject bonusUpButton;
-    public GameObject settingButton;
-    public GameObject backscorebutton;
-    public GameObject MainMenubutton;
+
+    private void Update()
+    {
+        fuelGauge.SetSize(fuel/100);
+    }
 }

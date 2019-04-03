@@ -43,9 +43,9 @@ public class SpawnStars : MonoBehaviour
             if(MySceneManager.Instance.maxStars[x] == null)
             {
                 if (Random.Range(0, 2) == 0)
-                    MySceneManager.Instance.maxStars[x] = (Instantiate(MySceneManager.Instance.starNormalPrefab, new Vector2(halfWidth + Random.Range(5f, halfWidth * 2f), Random.Range(-halfHeight + 2f, halfHeight - 2f)), Quaternion.identity));
+                    MySceneManager.Instance.maxStars[x] = (Instantiate(MySceneManager.Instance.starNormalPrefab, new Vector2(halfWidth + Random.Range(5f, halfWidth * 2f), Random.Range(-halfHeight + 2f, halfHeight)), Quaternion.identity));
                 else
-                    MySceneManager.Instance.maxStars[x] = (Instantiate(MySceneManager.Instance.starBadPrefab, new Vector2(halfWidth + Random.Range(5f, halfWidth * 2f), Random.Range(-halfHeight + 2f, halfHeight - 2f)), Quaternion.identity));
+                    MySceneManager.Instance.maxStars[x] = (Instantiate(MySceneManager.Instance.starBadPrefab, new Vector2(halfWidth + Random.Range(5f, halfWidth * 2f), Random.Range(-halfHeight + 2f, halfHeight)), Quaternion.identity));
 
             }
         }

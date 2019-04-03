@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TouchClick : MonoBehaviour
 {
@@ -8,25 +9,28 @@ public class TouchClick : MonoBehaviour
     // in the pregabs folder
     // used to identify which star is which
     public int starIdentifier;
-    private bool disappearing;
+
     public float timer = 100.0f;
 
-    void Start()
-    {
-        disappearing = false;
-    }
+  
 
     // Update is called once per frame
     void Update()
     {
-        StarDisappear();
         TouchInput();
 
-        timer -= 0.1f;
+        timer -= 1.0f;
         if (timer <= 0)
         {
             MySceneManager.Instance.score += (MySceneManager.Instance.timePlus * MySceneManager.Instance.timePlusLevel);
             timer = 100.0f;
+        }
+
+        MySceneManager.Instance.fuel -= 0.01f;
+
+        if (MySceneManager.Instance.fuel <= 0.0f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         }
 
     }
@@ -56,27 +60,11 @@ public class TouchClick : MonoBehaviour
                     // calls IdentifyStar function to effect the game
                     // based on whichever star is chosen
                     IdentifyStar(starIdentifier);
-
-                    Destroy(gameObject, .3f);
-                    disappearing = true;
+                    Destroy(gameObject);
                 }
             }
         }
 
-    }
-
-    //Method that aesthetically handles the star sprite dissappearance action
-    void StarDisappear()
-    {
-        //if the star has been touched, rotate, change opacity, and enlarge size to appear like disappeaing
-        if (disappearing)
-        {
-            transform.Rotate(Vector3.forward * 10);
-            transform.localScale += new Vector3(.5f,.5f,0);
-            Color tempColor = gameObject.GetComponent<SpriteRenderer>().color;
-            tempColor.a -= .1f;
-            gameObject.GetComponent<SpriteRenderer>().color = tempColor;
-        }
     }
 
     // When object is clicked on, check which star,
@@ -84,7 +72,7 @@ public class TouchClick : MonoBehaviour
     private void OnMouseDown()
     {
         IdentifyStar(starIdentifier);
-        Destroy(gameObject, .3f);
+        Destroy(gameObject);
     }
 
     /*
@@ -102,12 +90,20 @@ public class TouchClick : MonoBehaviour
             case 1: // normal star
                 //Adds on any additional values
                 MySceneManager.Instance.score += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel)) * MySceneManager.Instance.multiplier;
+                MySceneManager.Instance.fuel += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
+                if (MySceneManager.Instance.fuel >= 1000.0f)
+                {
+                    MySceneManager.Instance.fuel = 1000.0f;
+                }
+
                 MySceneManager.Instance.multiplier += .05f + (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
                 MySceneManager.Instance.stars++;
                 break;
             case 2: // bad star
-                MySceneManager.Instance.score -= 1f;
+                MySceneManager.Instance.score -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
                 MySceneManager.Instance.multiplier -= .1f;
+                MySceneManager.Instance.fuel -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
+
                 break;
         }
 
