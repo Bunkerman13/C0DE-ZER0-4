@@ -23,7 +23,7 @@ public class MySceneManager : Singleton<MySceneManager>
 
 
     //Specifically used to draw the gauge
-    public float fuel = 1000.0f;
+    public float fuel = 100;
     public FuelGauge fuelGauge;
 
     // pause
@@ -53,8 +53,4 @@ public class MySceneManager : Singleton<MySceneManager>
     public GameObject settingButton;
     public GameObject settingCanvas;
 
-    //private void Update()
-    //{
-    //    fuelGauge.SetSize(fuel/100);
-    //}
 }

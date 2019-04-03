@@ -11,28 +11,37 @@ public class TouchClick : MonoBehaviour
     public int starIdentifier;
 
     public float timer = 100.0f;
+    public float timers = 1000.0f;
 
-  
 
     // Update is called once per frame
     void Update()
     {
         TouchInput();
 
-        timer -= 1.0f;
-        if (timer <= 0)
+        if (MySceneManager.Instance.paused == true)
         {
-            MySceneManager.Instance.score += (MySceneManager.Instance.timePlus * MySceneManager.Instance.timePlusLevel);
-            timer = 100.0f;
+            timer -= 1.0f;
+            timers -= 5.0f;
+
+            if (timer <= 0)
+            {
+                MySceneManager.Instance.score += (MySceneManager.Instance.timePlus * MySceneManager.Instance.timePlusLevel);
+                timer = 100.0f;
+            }
+
+            if (timers <= 0)
+            {
+                MySceneManager.Instance.fuel -= 1;
+                timers = 1000.0f;
+            }
+
+            if (MySceneManager.Instance.fuel <= 0.0f)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+            }
         }
-
-        MySceneManager.Instance.fuel -= 0.01f;
-
-        if (MySceneManager.Instance.fuel <= 0.0f)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
-        }
-
+        MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
     }
 
     /*
@@ -90,10 +99,10 @@ public class TouchClick : MonoBehaviour
             case 1: // normal star
                 //Adds on any additional values
                 MySceneManager.Instance.score += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel)) * MySceneManager.Instance.multiplier;
-                MySceneManager.Instance.fuel += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
-                if (MySceneManager.Instance.fuel >= 1000.0f)
+                MySceneManager.Instance.fuel += 1f;
+                if (MySceneManager.Instance.fuel >= 100f)
                 {
-                    MySceneManager.Instance.fuel = 1000.0f;
+                    MySceneManager.Instance.fuel = 100f;
                 }
 
                 MySceneManager.Instance.multiplier += .05f + (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
@@ -102,7 +111,7 @@ public class TouchClick : MonoBehaviour
             case 2: // bad star
                 MySceneManager.Instance.score -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
                 MySceneManager.Instance.multiplier -= .1f;
-                MySceneManager.Instance.fuel -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
+                MySceneManager.Instance.fuel -= 1f;
 
                 break;
         }

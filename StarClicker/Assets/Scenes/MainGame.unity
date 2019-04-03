@@ -2399,8 +2399,8 @@ MonoBehaviour:
   scorePlusCost: 5
   multiPlusCost: 5
   timePlusCost: 5
-  fuel: 1000
-  fuelGauge: {fileID: 0}
+  fuel: 100
+  fuelGauge: {fileID: 1421014361}
   paused: 0
   screenCanvas: {fileID: 1162989053}
   storeCanvas: {fileID: 155619859}
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1984b44247aabf247840c8ab47b92719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 0}
+  bar: {fileID: 454143069}
 --- !u!1 &1432609291
 GameObject:
   m_ObjectHideFlags: 0
