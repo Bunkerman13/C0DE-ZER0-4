@@ -11,7 +11,6 @@ public class TouchClick : MonoBehaviour
     public int starIdentifier;
 
     public float timer = 100.0f;
-    public float timers = 1000.0f;
 
 
     // Update is called once per frame
@@ -19,10 +18,9 @@ public class TouchClick : MonoBehaviour
     {
         TouchInput();
 
-        if (MySceneManager.Instance.paused == true)
+        if (MySceneManager.Instance.paused == false)
         {
             timer -= 1.0f;
-            timers -= 5.0f;
 
             if (timer <= 0)
             {
@@ -30,19 +28,22 @@ public class TouchClick : MonoBehaviour
                 timer = 100.0f;
             }
 
-            if (timers <= 0)
-            {
-                MySceneManager.Instance.fuel -= 1f;
-                timers = 1000.0f;
-            }
+                MySceneManager.Instance.fuel -= .002f;
+                MySceneManager.Instance.time -= .02f;
 
             if (MySceneManager.Instance.fuel <= 0.0f)
             {
                 SceneManager.LoadScene(3);
             }
+            else if (MySceneManager.Instance.time <= 0.0f)
+             {
+                MySceneManager.Instance.storeCanvas.GetComponent<HandleStore>().pickOne();
+            }
         }
         MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
     }
+
+
 
     private void OnMouseEnter()
     {
@@ -112,6 +113,7 @@ public class TouchClick : MonoBehaviour
                 {
                     MySceneManager.Instance.fuel = 100f;
                 }
+                MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
 
                 MySceneManager.Instance.multiplier += .05f + (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
                 MySceneManager.Instance.stars++;
@@ -120,6 +122,7 @@ public class TouchClick : MonoBehaviour
                 MySceneManager.Instance.score -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
                 MySceneManager.Instance.multiplier -= .1f;
                 MySceneManager.Instance.fuel -= 1f;
+                MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
 
                 break;
         }

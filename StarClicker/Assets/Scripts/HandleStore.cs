@@ -16,6 +16,10 @@ public class HandleStore : MonoBehaviour
         MySceneManager.Instance.bonusUpButton.SetActive(false);
         MySceneManager.Instance.multiUpButton.SetActive(false);
         MySceneManager.Instance.settingButton.SetActive(false);
+
+        MySceneManager.Instance.menuButton.SetActive(false);
+        MySceneManager.Instance.nextButton.SetActive(false);
+
         //MySceneManager.Instance.backscorebutton.SetActive(false);
         //MySceneManager.Instance.MainMenubutton.SetActive(false);
     }
@@ -49,7 +53,7 @@ public class HandleStore : MonoBehaviour
         tempColor.a = 1f;
         storeBackground.color = tempColor;
 
-      
+
 
         // toggles raycast target (allow it to be clicked or not)
         storeBackground.raycastTarget = !storeBackground.raycastTarget;
@@ -140,7 +144,7 @@ public class HandleStore : MonoBehaviour
     {
         MySceneManager.Instance.settingCanvas.GetComponent<Canvas>().sortingOrder = 3;
         MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
-        
+
         MySceneManager.Instance.settingCanvas.SetActive(true);
         //MySceneManager.Instance.backscorebutton.SetActive(true);
         //MySceneManager.Instance.MainMenubutton.SetActive(true);
@@ -160,5 +164,55 @@ public class HandleStore : MonoBehaviour
     public void Menue()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+
+    public void pickOne()
+    {
+        MySceneManager.Instance.fuel = 100.0f;
+        MySceneManager.Instance.time = 1000.0f;
+
+        for (int x = 0; x < MySceneManager.Instance.maxStars.Count; x++)
+        {
+            Destroy(MySceneManager.Instance.maxStars[x].gameObject);
+        }
+
+        MySceneManager.Instance.menuButton.SetActive(true);
+        MySceneManager.Instance.nextButton.SetActive(true);
+
+        MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
+        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
+
+        Image storeBackground = GameObject.Find("StoreBackground").GetComponent<Image>();
+
+        Color tempColor = storeBackground.color;
+        tempColor.a = 1f;
+        storeBackground.color = tempColor;
+
+        // toggles raycast target (allow it to be clicked or not)
+        storeBackground.raycastTarget = !storeBackground.raycastTarget;
+    }
+
+    public void ClickMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ClickNext()
+    {
+        MySceneManager.Instance.menuButton.SetActive(false);
+        MySceneManager.Instance.nextButton.SetActive(false);
+        MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
+        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
+
+        Image storeBackground = GameObject.Find("StoreBackground").GetComponent<Image>();
+
+        // makes image transparent
+        Color tempColor = storeBackground.color;
+        tempColor.a = 0f;
+        storeBackground.color = tempColor;
+
+        // toggles raycast target (allow it to be clicked or not)
+        storeBackground.raycastTarget = !storeBackground.raycastTarget;
     }
 }

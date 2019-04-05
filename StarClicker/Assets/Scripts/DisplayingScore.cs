@@ -42,12 +42,17 @@ public class DisplayingScore : MonoBehaviour
 
         else if (displayValue == 4)
         {
-            textComponent.text = "Fuel: " + MySceneManager.Instance.fuel;
+            textComponent.text = "Fuel: " + Mathf.RoundToInt(MySceneManager.Instance.fuel);
+        }
+
+        else if (displayValue == 5)
+        {
+            textComponent.text = "Time: " + Mathf.RoundToInt(MySceneManager.Instance.time);
         }
 
         // displays the current state of score, multiplier, and amount of stars
         // + "\n" +
-            // + "\n" +
-            //
+        // + "\n" +
+        //
     }
 }
