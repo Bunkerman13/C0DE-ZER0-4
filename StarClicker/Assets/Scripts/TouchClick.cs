@@ -32,16 +32,24 @@ public class TouchClick : MonoBehaviour
 
             if (timers <= 0)
             {
-                MySceneManager.Instance.fuel -= 1;
+                MySceneManager.Instance.fuel -= 1f;
                 timers = 1000.0f;
             }
 
             if (MySceneManager.Instance.fuel <= 0.0f)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+                SceneManager.LoadScene(3);
             }
         }
         MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
+    }
+
+    private void OnMouseEnter()
+    {
+        // calls IdentifyStar function to effect the game
+        // based on whichever star is chosen
+        IdentifyStar(starIdentifier);
+        Destroy(gameObject);
     }
 
     /*
