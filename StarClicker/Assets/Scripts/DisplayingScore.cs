@@ -49,7 +49,10 @@ public class DisplayingScore : MonoBehaviour
         {
             textComponent.text = "Time: " + Mathf.RoundToInt(MySceneManager.Instance.time);
         }
-
+        else if(displayValue==6)
+        {
+            textComponent.text = "Level: " + MySceneManager.Instance.leveling;
+        }
         // displays the current state of score, multiplier, and amount of stars
         // + "\n" +
         // + "\n" +

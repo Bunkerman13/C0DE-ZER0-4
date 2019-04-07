@@ -20,6 +20,7 @@ public class MySceneManager : Singleton<MySceneManager>
     public int scorePlusCost;
     public int multiPlusCost;
     public int timePlusCost;
+    public int leveling;
 
 
     //Specifically used to draw the gauge
