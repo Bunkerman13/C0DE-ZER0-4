@@ -200,11 +200,11 @@ public class HandleStore : MonoBehaviour
 
     public void ClickNext()
     {
-        MySceneManager.Instance.leveling += 1;
         MySceneManager.Instance.menuButton.SetActive(false);
         MySceneManager.Instance.nextButton.SetActive(false);
         MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
         MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
+
         Image storeBackground = GameObject.Find("StoreBackground").GetComponent<Image>();
 
         // makes image transparent

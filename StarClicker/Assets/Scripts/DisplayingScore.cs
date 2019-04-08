@@ -21,6 +21,9 @@ public class DisplayingScore : MonoBehaviour
     void Update()
     {
 
+        MySceneManager.Instance.timeGauge.SetSize(MySceneManager.Instance.time / 100);
+        //MySceneManager.Instance.time -= Time.deltaTime;
+
         // makes sure multiplier doesn't go less than 1 and score doesn't go negative
         if (MySceneManager.Instance.multiplier < 1f)
             MySceneManager.Instance.multiplier = 1f;
@@ -49,10 +52,7 @@ public class DisplayingScore : MonoBehaviour
         {
             textComponent.text = "Time: " + Mathf.RoundToInt(MySceneManager.Instance.time);
         }
-        else if(displayValue==6)
-        {
-            textComponent.text = "Level: " + MySceneManager.Instance.leveling;
-        }
+
         // displays the current state of score, multiplier, and amount of stars
         // + "\n" +
         // + "\n" +
