@@ -1965,8 +1965,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839965059}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4066.5989}
-  m_LocalScale: {x: 45.199997, y: 45.199997, z: 45.199997}
+  m_LocalPosition: {x: 0, y: 0, z: -3802.6}
+  m_LocalScale: {x: 39.32563, y: 39.32563, z: 39.32563}
   m_Children:
   - {fileID: 1527090307}
   - {fileID: 1177503208}
@@ -1977,7 +1977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 230, y: -168}
+  m_AnchoredPosition: {x: 211.6, y: -173.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839965061
@@ -2315,7 +2315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -5.0200005, y: -1.3800011}
+  m_AnchoredPosition: {x: 45.12, y: 48.42}
   m_SizeDelta: {x: 239, y: 68}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1004256684
@@ -3292,8 +3292,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421014359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -394, y: -168, z: -4066.5989}
-  m_LocalScale: {x: 45.199997, y: 45.199997, z: 45.199997}
+  m_LocalPosition: {x: -352.2, y: -172.61, z: -3807}
+  m_LocalScale: {x: 39.42344, y: 39.42344, z: 39.42344}
   m_Children:
   - {fileID: 1989126209}
   - {fileID: 454143069}
@@ -3962,14 +3962,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24417053, g: 0.5666624, b: 0.8773585, a: 1}
+  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f9600ce97b2d53a49b5b76cad0591007, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
