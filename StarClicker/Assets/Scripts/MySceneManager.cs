@@ -57,4 +57,10 @@ public class MySceneManager : Singleton<MySceneManager>
 
     public GameObject menuButton;
     public GameObject nextButton;
+    private void Start()
+    {
+        screenCanvas = GameObject.FindGameObjectWithTag("screenCanvas");
+        storeCanvas = GameObject.FindGameObjectWithTag("storeCanvas");
+        Debug.Log(screenCanvas.activeInHierarchy);
+    }
 }
