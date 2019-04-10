@@ -11,11 +11,12 @@ public class TouchClick : MonoBehaviour
     public int starIdentifier;
     private bool disappearing;
     public float timer = 100.0f;
-
+    public MySceneManager manager;
     //start to initialize each instance of disappearing
     void Start()
     {
         disappearing = false;
+        manager = GameObject.FindGameObjectWithTag("OriginalSceneManager").GetComponent<MySceneManager>();
     }
 
     // Update is called once per frame
@@ -24,29 +25,29 @@ public class TouchClick : MonoBehaviour
         StarDisappear();
         TouchInput();
 
-        if (MySceneManager.Instance.paused == false)
+        if (manager.paused == false)
         {
             timer -= 1.0f;
 
             if (timer <= 0)
             {
-                MySceneManager.Instance.score += (MySceneManager.Instance.timePlus * MySceneManager.Instance.timePlusLevel);
+                manager.score += (manager.timePlus * manager.timePlusLevel);
                 timer = 100.0f;
             }
 
-                MySceneManager.Instance.fuel -= .002f;
-                MySceneManager.Instance.time -= .02f;
+                manager.fuel -= .002f;
+                manager.time -= .02f;
 
-            if (MySceneManager.Instance.fuel <= 0.0f)
+            if (manager.fuel <= 0.0f)
             {
                 SceneManager.LoadScene(3);
             }
-            else if (MySceneManager.Instance.time <= 0.0f)
+            else if (manager.time <= 0.0f)
              {
-                MySceneManager.Instance.storeCanvas.GetComponent<HandleStore>().pickOne();
+                manager.storeCanvas.GetComponent<HandleStore>().pickOne();
             }
         }
-        MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
+        manager.fuelGauge.SetSize(manager.fuel / 10);
     }
 
 
@@ -130,33 +131,33 @@ public class TouchClick : MonoBehaviour
         {
             case 1: // normal star
                 //Adds on any additional values
-                MySceneManager.Instance.score += (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel)) * MySceneManager.Instance.multiplier;
-                MySceneManager.Instance.fuel += 1f;
-                if (MySceneManager.Instance.fuel >= 100f)
+                manager.score += (1f + (manager.scorePlus * manager.scorePlusLevel)) * manager.multiplier;
+                manager.fuel += 1f;
+                if (manager.fuel >= 100f)
                 {
-                    MySceneManager.Instance.fuel = 100f;
+                    manager.fuel = 100f;
                 }
-                MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
+                manager.fuelGauge.SetSize(manager.fuel / 10);
 
-                MySceneManager.Instance.multiplier += .05f + (MySceneManager.Instance.multiPlus * MySceneManager.Instance.multiPlusLevel);
-                MySceneManager.Instance.stars++;
+                manager.multiplier += .05f + (manager.multiPlus * manager.multiPlusLevel);
+                manager.stars++;
                 break;
             case 2: // bad star
-                MySceneManager.Instance.score -= (1f + (MySceneManager.Instance.scorePlus * MySceneManager.Instance.scorePlusLevel));
-                MySceneManager.Instance.multiplier -= .1f;
-                MySceneManager.Instance.fuel -= 1f;
-                MySceneManager.Instance.fuelGauge.SetSize(MySceneManager.Instance.fuel / 10);
+                manager.score -= (1f + (manager.scorePlus * manager.scorePlusLevel));
+                manager.multiplier -= .1f;
+                manager.fuel -= 1f;
+                manager.fuelGauge.SetSize(manager.fuel / 10);
 
                 break;
         }
 
         // rounds score and multiplier to nearest 100ths place
-        float score = (MySceneManager.Instance.score * 100f);
+        float score = (manager.score * 100f);
         score = Mathf.Ceil(score);
-        MySceneManager.Instance.score = score / 100f;
+        manager.score = score / 100f;
 
-        float multiplier = (MySceneManager.Instance.multiplier * 100f);
+        float multiplier = (manager.multiplier * 100f);
         multiplier = Mathf.Ceil(multiplier);
-        MySceneManager.Instance.multiplier = multiplier / 100f;
+        manager.multiplier = multiplier / 100f;
     }
 }
