@@ -6,38 +6,39 @@ using UnityEngine.UI;
 public class PopulateEnd : MonoBehaviour
 {
     public GameObject score, mult, fuel, star;
+    public MySceneManager manager;
 
     //display the stats on the end screen
     // Start is called before the first frame update
     void Start()
     {
-        score.GetComponent<Text>().text = "Score: " + MySceneManager.Instance.score;
+        score.GetComponent<Text>().text = "Score: " + manager.score;
 
-        if (MySceneManager.Instance.multiplier <= 0)
+        if (manager.multiplier <= 0)
         {
             mult.GetComponent<Text>().text = "Multplier: 0";
         }
         else
         {
-            mult.GetComponent<Text>().text = "Multplier: " + MySceneManager.Instance.multiplier;
+            mult.GetComponent<Text>().text = "Multplier: " + manager.multiplier;
 
         }
 
-        if (MySceneManager.Instance.fuel <= 0)
+        if (manager.fuel <= 0)
         {
             fuel.GetComponent<Text>().text = "Fuel: 0";
         }
         else
         {
-            fuel.GetComponent<Text>().text = "Fuel: " + MySceneManager.Instance.fuel;
+            fuel.GetComponent<Text>().text = "Fuel: " + manager.fuel;
 
         }
-        star.GetComponent<Text>().text = "Stars: " + MySceneManager.Instance.stars;
+        star.GetComponent<Text>().text = "Stars: " + manager.stars;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
         
-    }
+    //}
 }

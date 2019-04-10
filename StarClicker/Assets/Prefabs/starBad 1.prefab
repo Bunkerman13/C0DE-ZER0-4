@@ -126,3 +126,5 @@ MonoBehaviour:
   starIdentifier: 2
   timer: 100
   manager: {fileID: 0}
+  blueprintScoreObject: {fileID: 6786629451195080359, guid: cb3c5b85053f39143ad2e711b688ae67,
+    type: 3}
