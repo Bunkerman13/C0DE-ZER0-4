@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MySceneManager : Singleton<MySceneManager>
+public class MySceneManager : MonoBehaviour //: Singleton<MySceneManager>
 {
     // values for determining score
     public float score;
@@ -57,4 +57,11 @@ public class MySceneManager : Singleton<MySceneManager>
 
     public GameObject menuButton;
     public GameObject nextButton;
+    private void Start()
+    {
+        screenCanvas = GameObject.FindGameObjectWithTag("screenCanvas");
+        storeCanvas = GameObject.FindGameObjectWithTag("storeCanvas");
+        Debug.Log(screenCanvas.activeInHierarchy);
+        maxStars = new List<GameObject>();
+    }
 }

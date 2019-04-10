@@ -44,8 +44,11 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                         DontDestroyOnLoad(singletonObject);
                     }
                     else
-                        // Make instance persistent.
+                    {
                         DontDestroyOnLoad(m_Instance);
+                    }
+                        // Make instance persistent.
+                        
                 }
 
                 return m_Instance;

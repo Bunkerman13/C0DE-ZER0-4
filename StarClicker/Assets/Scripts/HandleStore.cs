@@ -5,23 +5,25 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class HandleStore : MonoBehaviour
 {
+    public MySceneManager manager;
     // Start is called before the first frame update
-    void Start()
+    /*public static*/ void Start/*Game*/()
     {
-        MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
-        MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
-        MySceneManager.Instance.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + MySceneManager.Instance.multiPlusLevel.ToString() + " Cost: " + MySceneManager.Instance.multiPlusCost.ToString();
+        manager = GameObject.FindGameObjectWithTag("OriginalSceneManager").GetComponent<MySceneManager>();
+        manager.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + manager.scorePlusLevel.ToString() + " Cost: " + manager.scorePlusCost.ToString();
+        manager.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + manager.timePlusLevel.ToString() + " Cost: " + manager.timePlusCost.ToString();
+        manager.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + manager.multiPlusLevel.ToString() + " Cost: " + manager.multiPlusCost.ToString();
 
-        MySceneManager.Instance.scoreUpButton.SetActive(false);
-        MySceneManager.Instance.bonusUpButton.SetActive(false);
-        MySceneManager.Instance.multiUpButton.SetActive(false);
-        MySceneManager.Instance.settingButton.SetActive(false);
+        manager.scoreUpButton.SetActive(false);
+        manager.bonusUpButton.SetActive(false);
+        manager.multiUpButton.SetActive(false);
+        manager.settingButton.SetActive(false);
 
-        MySceneManager.Instance.menuButton.SetActive(false);
-        MySceneManager.Instance.nextButton.SetActive(false);
+        manager.menuButton.SetActive(false);
+        manager.nextButton.SetActive(false);
 
-        //MySceneManager.Instance.backscorebutton.SetActive(false);
-        //MySceneManager.Instance.MainMenubutton.SetActive(false);
+        //manager.backscorebutton.SetActive(false);
+        //manager.MainMenubutton.SetActive(false);
     }
 
     ////// Update is called once per frame
@@ -33,20 +35,20 @@ public class HandleStore : MonoBehaviour
     //}
     public void ClickEnter()
     {
-        MySceneManager.Instance.scoreUpButton.SetActive(true);
-        MySceneManager.Instance.bonusUpButton.SetActive(true);
-        MySceneManager.Instance.multiUpButton.SetActive(true);
+        manager.scoreUpButton.SetActive(true);
+        manager.bonusUpButton.SetActive(true);
+        manager.multiUpButton.SetActive(true);
 
-        MySceneManager.Instance.settingButton.SetActive(true);
+        manager.settingButton.SetActive(true);
 
-        MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
-        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
+        manager.paused = !manager.paused;
+        manager.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
 
         Image storeBackground = GameObject.Find("StoreBackground").GetComponent<Image>();
 
-        MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
-        MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
-        MySceneManager.Instance.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + MySceneManager.Instance.multiPlusLevel.ToString() + " Cost: " + MySceneManager.Instance.multiPlusCost.ToString();
+        manager.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + manager.scorePlusLevel.ToString() + " Cost: " + manager.scorePlusCost.ToString();
+        manager.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + manager.timePlusLevel.ToString() + " Cost: " + manager.timePlusCost.ToString();
+        manager.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + manager.multiPlusLevel.ToString() + " Cost: " + manager.multiPlusCost.ToString();
 
         // makes image solid
         Color tempColor = storeBackground.color;
@@ -61,8 +63,8 @@ public class HandleStore : MonoBehaviour
 
     public void ClickExit()
     {
-        MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
-        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
+        manager.paused = !manager.paused;
+        manager.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
 
         Image storeBackground = GameObject.Find("StoreBackground").GetComponent<Image>();
 
@@ -71,10 +73,10 @@ public class HandleStore : MonoBehaviour
         tempColor.a = 0f;
         storeBackground.color = tempColor;
 
-        MySceneManager.Instance.scoreUpButton.SetActive(false);
-        MySceneManager.Instance.bonusUpButton.SetActive(false);
-        MySceneManager.Instance.multiUpButton.SetActive(false);
-        MySceneManager.Instance.settingButton.SetActive(false);
+        manager.scoreUpButton.SetActive(false);
+        manager.bonusUpButton.SetActive(false);
+        manager.multiUpButton.SetActive(false);
+        manager.settingButton.SetActive(false);
 
         // toggles raycast target (allow it to be clicked or not)
         storeBackground.raycastTarget = !storeBackground.raycastTarget;
@@ -83,18 +85,18 @@ public class HandleStore : MonoBehaviour
     ////Increases score gained from star cicks
     public void ClickScoreUp()
     {
-        float buyScore = MySceneManager.Instance.score;
+        float buyScore = manager.score;
 
-        if (buyScore >= MySceneManager.Instance.scorePlusCost)
+        if (buyScore >= manager.scorePlusCost)
         {
-            MySceneManager.Instance.score = MySceneManager.Instance.score - MySceneManager.Instance.scorePlusCost;
-            MySceneManager.Instance.scorePlusLevel += 1;
-            MySceneManager.Instance.scorePlusCost = (MySceneManager.Instance.scorePlusCost * 2);
+            manager.score = manager.score - manager.scorePlusCost;
+            manager.scorePlusLevel += 1;
+            manager.scorePlusCost = (manager.scorePlusCost * 2);
 
 
-            MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
-            MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
-            MySceneManager.Instance.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + MySceneManager.Instance.multiPlusLevel.ToString() + " Cost: " + MySceneManager.Instance.multiPlusCost.ToString();
+            manager.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + manager.scorePlusLevel.ToString() + " Cost: " + manager.scorePlusCost.ToString();
+            manager.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + manager.timePlusLevel.ToString() + " Cost: " + manager.timePlusCost.ToString();
+            manager.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + manager.multiPlusLevel.ToString() + " Cost: " + manager.multiPlusCost.ToString();
 
         }
 
@@ -103,16 +105,16 @@ public class HandleStore : MonoBehaviour
     //Increases the amount the multiplier increases by
     public void ClickMultiUp()
     {
-        float buyScore = MySceneManager.Instance.score;
-        if (buyScore >= MySceneManager.Instance.multiPlusCost)
+        float buyScore = manager.score;
+        if (buyScore >= manager.multiPlusCost)
         {
-            MySceneManager.Instance.score = MySceneManager.Instance.score - MySceneManager.Instance.multiPlusCost;
-            MySceneManager.Instance.multiPlusLevel += 1;
-            MySceneManager.Instance.multiPlusCost = (MySceneManager.Instance.multiPlusCost * 2);
+            manager.score = manager.score - manager.multiPlusCost;
+            manager.multiPlusLevel += 1;
+            manager.multiPlusCost = (manager.multiPlusCost * 2);
 
-            MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
-            MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
-            MySceneManager.Instance.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + MySceneManager.Instance.multiPlusLevel.ToString() + " Cost: " + MySceneManager.Instance.multiPlusCost.ToString();
+            manager.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + manager.scorePlusLevel.ToString() + " Cost: " + manager.scorePlusCost.ToString();
+            manager.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + manager.timePlusLevel.ToString() + " Cost: " + manager.timePlusCost.ToString();
+            manager.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + manager.multiPlusLevel.ToString() + " Cost: " + manager.multiPlusCost.ToString();
 
         }
 
@@ -121,45 +123,45 @@ public class HandleStore : MonoBehaviour
     //Increases the points the player earns over time
     public void ClickBonusUp()
     {
-        float buyScore = MySceneManager.Instance.score;
-        if (buyScore >= MySceneManager.Instance.timePlusCost)
+        float buyScore = manager.score;
+        if (buyScore >= manager.timePlusCost)
         {
-            Debug.Log(MySceneManager.Instance.timePlusCost);
-            Debug.Log(MySceneManager.Instance.timePlusLevel);
+            Debug.Log(manager.timePlusCost);
+            Debug.Log(manager.timePlusLevel);
 
-            MySceneManager.Instance.score = MySceneManager.Instance.score - MySceneManager.Instance.timePlusCost;
-            MySceneManager.Instance.timePlusLevel += 1;
-            MySceneManager.Instance.timePlusCost = (MySceneManager.Instance.timePlusCost * 2);
+            manager.score = manager.score - manager.timePlusCost;
+            manager.timePlusLevel += 1;
+            manager.timePlusCost = (manager.timePlusCost * 2);
 
-            Debug.Log(MySceneManager.Instance.timePlusCost);
-            Debug.Log(MySceneManager.Instance.timePlusLevel);
+            Debug.Log(manager.timePlusCost);
+            Debug.Log(manager.timePlusLevel);
 
-            MySceneManager.Instance.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + MySceneManager.Instance.scorePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.scorePlusCost.ToString();
-            MySceneManager.Instance.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + MySceneManager.Instance.timePlusLevel.ToString() + " Cost: " + MySceneManager.Instance.timePlusCost.ToString();
-            MySceneManager.Instance.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + MySceneManager.Instance.multiPlusLevel.ToString() + " Cost: " + MySceneManager.Instance.multiPlusCost.ToString();
+            manager.scoreUpButton.GetComponentInChildren<Text>().text = "SCORE UP\nLvl: " + manager.scorePlusLevel.ToString() + " Cost: " + manager.scorePlusCost.ToString();
+            manager.bonusUpButton.GetComponentInChildren<Text>().text = "BONUS UP\nLvl: " + manager.timePlusLevel.ToString() + " Cost: " + manager.timePlusCost.ToString();
+            manager.multiUpButton.GetComponentInChildren<Text>().text = "MULTIPLIER UP\nLvl: " + manager.multiPlusLevel.ToString() + " Cost: " + manager.multiPlusCost.ToString();
 
         }
     }
     public void Setting()
     {
-        MySceneManager.Instance.settingCanvas.GetComponent<Canvas>().sortingOrder = 3;
-        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
+        manager.settingCanvas.GetComponent<Canvas>().sortingOrder = 3;
+        manager.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
 
-        MySceneManager.Instance.settingCanvas.SetActive(true);
-        //MySceneManager.Instance.backscorebutton.SetActive(true);
-        //MySceneManager.Instance.MainMenubutton.SetActive(true);
+        manager.settingCanvas.SetActive(true);
+        //manager.backscorebutton.SetActive(true);
+        //manager.MainMenubutton.SetActive(true);
     }
     public void falseSetting()
     {
-        MySceneManager.Instance.settingCanvas.GetComponent<Canvas>().sortingOrder = -3;
-        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
-        MySceneManager.Instance.settingCanvas.SetActive(false);
-        MySceneManager.Instance.scoreUpButton.SetActive(true);
-        MySceneManager.Instance.multiUpButton.SetActive(true);
-        MySceneManager.Instance.bonusUpButton.SetActive(true);
-        MySceneManager.Instance.settingButton.SetActive(true);
-        //MySceneManager.Instance.backscorebutton.SetActive(false);
-        //MySceneManager.Instance.MainMenubutton.SetActive(false);
+        manager.settingCanvas.GetComponent<Canvas>().sortingOrder = -3;
+        manager.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
+        manager.settingCanvas.SetActive(false);
+        manager.scoreUpButton.SetActive(true);
+        manager.multiUpButton.SetActive(true);
+        manager.bonusUpButton.SetActive(true);
+        manager.settingButton.SetActive(true);
+        //manager.backscorebutton.SetActive(false);
+        //manager.MainMenubutton.SetActive(false);
     }
     public void Menue()
     {
@@ -169,19 +171,19 @@ public class HandleStore : MonoBehaviour
 
     public void pickOne()
     {
-        MySceneManager.Instance.fuel = 100.0f;
-        MySceneManager.Instance.time = 1000.0f;
+        manager.fuel = 100.0f;
+        manager.time = 1000.0f;
 
-        for (int x = 0; x < MySceneManager.Instance.maxStars.Count; x++)
+        for (int x = 0; x < manager.maxStars.Count; x++)
         {
-            Destroy(MySceneManager.Instance.maxStars[x].gameObject);
+            Destroy(manager.maxStars[x].gameObject);
         }
 
-        MySceneManager.Instance.menuButton.SetActive(true);
-        MySceneManager.Instance.nextButton.SetActive(true);
+        manager.menuButton.SetActive(true);
+        manager.nextButton.SetActive(true);
 
-        MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
-        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
+        manager.paused = !manager.paused;
+        manager.storeCanvas.GetComponent<Canvas>().sortingOrder = 2;
 
         Image storeBackground = GameObject.Find("StoreBackground").GetComponent<Image>();
 
@@ -200,10 +202,10 @@ public class HandleStore : MonoBehaviour
 
     public void ClickNext()
     {
-        MySceneManager.Instance.menuButton.SetActive(false);
-        MySceneManager.Instance.nextButton.SetActive(false);
-        MySceneManager.Instance.paused = !MySceneManager.Instance.paused;
-        MySceneManager.Instance.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
+        manager.menuButton.SetActive(false);
+        manager.nextButton.SetActive(false);
+        manager.paused = !manager.paused;
+        manager.storeCanvas.GetComponent<Canvas>().sortingOrder = -2;
 
         Image storeBackground = GameObject.Find("StoreBackground").GetComponent<Image>();
 

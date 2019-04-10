@@ -7,22 +7,23 @@ public class MenuScript : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        //HandleStore.StartGame();
+        SceneManager.LoadScene("MainGame");
     }
     public void Instructions()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("Instructions");
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -2);
+        SceneManager.LoadScene("MainMenu");
     }
     public void PlayGameFromInstructions()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+        SceneManager.LoadScene("MainGame");
     }
     public void GameOvertoMainMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        SceneManager.LoadScene("MainMenu");
     }
 }
