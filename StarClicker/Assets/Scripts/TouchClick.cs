@@ -100,7 +100,11 @@ public class TouchClick : MonoBehaviour
         if (disappearing)
         {
             transform.Rotate(Vector3.forward * 10);
-            transform.localScale += new Vector3(.5f, .5f, 0);
+            transform.localScale += new Vector3(.2f, .2f, 0);
+            if (gameObject.name.Contains("Bad"))
+            {
+                bool b = true;
+            }
             Color tempColor = gameObject.GetComponent<SpriteRenderer>().color;
             tempColor.a -= .1f;
             gameObject.GetComponent<SpriteRenderer>().color = tempColor;
