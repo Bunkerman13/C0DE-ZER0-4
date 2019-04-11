@@ -799,7 +799,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1111892416}
-        m_MethodName: MainMenu
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1062,6 +1062,7 @@ MonoBehaviour:
   mult: {fileID: 918661362}
   fuel: {fileID: 682839970}
   star: {fileID: 1646289987}
+  displayScore: {fileID: 0}
 --- !u!1 &1405434857
 GameObject:
   m_ObjectHideFlags: 0

@@ -1222,8 +1222,7 @@ MonoBehaviour:
   starIdentifier: 0
   timer: 100
   manager: {fileID: 1407255395}
-  blueprintScoreObject: {fileID: 6786629451195080359, guid: cb3c5b85053f39143ad2e711b688ae67,
-    type: 3}
+  ifCamera: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1469,6 +1468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1407255395}
+  blueprintScoreObject: {fileID: 6786629451195080359, guid: cb3c5b85053f39143ad2e711b688ae67,
+    type: 3}
+  activeScoreObject: {fileID: 0}
 --- !u!1 &739942658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3259,6 +3261,7 @@ MonoBehaviour:
   scorePlusCost: 5
   multiPlusCost: 5
   timePlusCost: 5
+  gameOverValue: 0
   fuel: 100
   time: 1000
   fuelGauge: {fileID: 1421014361}

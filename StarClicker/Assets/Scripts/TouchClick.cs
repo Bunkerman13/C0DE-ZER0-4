@@ -12,7 +12,8 @@ public class TouchClick : MonoBehaviour
     private bool disappearing;
     public float timer = 100.0f;
     public MySceneManager manager;
-    public GameObject blueprintScoreObject;
+    
+    public bool ifCamera;
 
     //start to initialize each instance of disappearing
     void Start()
@@ -42,17 +43,9 @@ public class TouchClick : MonoBehaviour
 
             if (manager.fuel <= 0.0f)
             {
-                if(starIdentifier == 0)
-                {
-                    blueprintScoreObject = Instantiate(blueprintScoreObject);
-                    blueprintScoreObject.GetComponent<HoldScore>().Score = manager.score;
-                    blueprintScoreObject.GetComponent<HoldScore>().Multiplier = manager.multiplier;
-                    blueprintScoreObject.GetComponent<HoldScore>().Stars = manager.stars;
-                    blueprintScoreObject.GetComponent<HoldScore>().Fuel = manager.fuel;
+                manager.gameOverValue = 1;
 
-                }
-
-                SceneManager.LoadScene(3);
+                
 
             }
             else if (manager.time <= 0.0f)

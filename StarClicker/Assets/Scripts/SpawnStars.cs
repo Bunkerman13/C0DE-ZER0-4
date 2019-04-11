@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnStars : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class SpawnStars : MonoBehaviour
     float halfHeight;
     float halfWidth;
     public MySceneManager manager;
+    public GameObject blueprintScoreObject;
+    public GameObject activeScoreObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +38,21 @@ public class SpawnStars : MonoBehaviour
                     manager.maxStars.Add(Instantiate(manager.starBadPrefab, new Vector2(halfWidth + Random.Range(4f, halfWidth*2.5f), Random.Range(-halfHeight + 2f, halfHeight - 2f)), Quaternion.identity));
 
         ReplaceStar();
+
+        if(manager.gameOverValue == 1)
+        {
+            if (activeScoreObject == null)
+            {
+                activeScoreObject = Instantiate(blueprintScoreObject);
+                activeScoreObject.GetComponent<HoldScore>().Score = manager.score;
+                activeScoreObject.GetComponent<HoldScore>().Multiplier = manager.multiplier;
+                activeScoreObject.GetComponent<HoldScore>().Stars = manager.stars;
+                activeScoreObject.GetComponent<HoldScore>().Fuel = manager.fuel;
+
+            }
+
+            SceneManager.LoadScene(3);
+        }
     }
 
     void ReplaceStar()

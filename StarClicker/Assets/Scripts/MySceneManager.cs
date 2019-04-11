@@ -21,6 +21,8 @@ public class MySceneManager : MonoBehaviour //: Singleton<MySceneManager>
     public int multiPlusCost;
     public int timePlusCost;
 
+    public int gameOverValue;
+
 
     //Specifically used to draw the gauge
     public float fuel = 100.00f;
